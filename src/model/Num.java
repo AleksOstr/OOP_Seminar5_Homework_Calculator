@@ -20,7 +20,12 @@ public class Num {
 
         @Override
         public String toString() {
-            return String.format("%d/%d", this.numerator, this.denominator);
+            if (numerator == 0) {
+                return "0";
+            } else if (numerator == denominator) {
+                return "1";
+            }
+            return String.format("%d/%d", numerator, denominator);
         }
 
         public Fraction simplify() {
