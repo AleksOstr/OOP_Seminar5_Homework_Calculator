@@ -2,12 +2,14 @@ package view;
 
 import controller.ComplexController;
 import controller.FractionController;
+import logger.LogWriter;
 
 import java.util.Scanner;
 
 public class CalcView {
     private ComplexController compController;
     private FractionController fracController;
+    private LogWriter logger = new LogWriter();
 
     public CalcView(ComplexController compController, FractionController fracController) {
         this.compController = compController;
@@ -38,28 +40,36 @@ public class CalcView {
                                 fracController.validateInputFraction(input1);
                                 String input2 = prompt("Enter second fraction: ");
                                 fracController.validateInputFraction(input2);
-                                System.out.println(fracController.sum(input1, input2));
+                                String answer = fracController.sum(input1, input2).toString();
+                                logger.writeOperation(input1, input2, command, answer);
+                                System.out.println(answer);
                                 break;
                             case DIFF:
                                 input1 = prompt("Enter first fraction: ");
                                 fracController.validateInputFraction(input1);
                                 input2 = prompt("Enter second fraction: ");
                                 fracController.validateInputFraction(input2);
-                                System.out.println(fracController.diff(input1, input2));
+                                answer = fracController.diff(input1, input2).toString();
+                                logger.writeOperation(input1, input2, command, answer);
+                                System.out.println(answer);
                                 break;
                             case MULT:
                                 input1 = prompt("Enter first fraction: ");
                                 fracController.validateInputFraction(input1);
                                 input2 = prompt("Enter second fraction: ");
                                 fracController.validateInputFraction(input2);
-                                System.out.println(fracController.mult(input1, input2));
+                                answer = fracController.mult(input1, input2).toString();
+                                logger.writeOperation(input1, input2, command, answer);
+                                System.out.println(answer);
                                 break;
                             case DIV:
                                 input1 = prompt("Enter first fraction: ");
                                 fracController.validateInputFraction(input1);
                                 input2 = prompt("Enter second fraction: ");
                                 fracController.validateInputFraction(input2);
-                                System.out.println(fracController.div(input1, input2));
+                                answer = fracController.div(input1, input2).toString();
+                                logger.writeOperation(input1, input2, command, answer);
+                                System.out.println(answer);
                                 break;
                         }
                         break;
@@ -70,23 +80,31 @@ public class CalcView {
                             case SUM:
                                 String input1 = prompt("Enter first complex: ");
                                 String input2 = prompt("Enter second complex: ");
-                                System.out.println(compController.sum(input1, input2));
+                                String answer = compController.sum(input1, input2).toString();
+                                logger.writeOperation(input1, input2, command, answer);
+                                System.out.println(answer);
                                 break;
                             case DIFF:
                                 input1 = prompt("Enter first complex: ");
                                 input2 = prompt("Enter second complex: ");
-                                System.out.println(compController.diff(input1, input2));
+                                answer = compController.diff(input1, input2).toString();
+                                logger.writeOperation(input1, input2, command, answer);
+                                System.out.println(answer);
                                 break;
                             case MULT:
                                 input1 = prompt("Enter first complex: ");
                                 input2 = prompt("Enter second complex: ");
-                                System.out.println(compController.mult(input1, input2));
+                                answer = compController.mult(input1, input2).toString();
+                                logger.writeOperation(input1, input2, command, answer);
+                                System.out.println(answer);
                                 break;
                             case DIV:
                                 input1 = prompt("Enter first complex: ");
                                 input2 = prompt("Enter second compelx: ");
                                 compController.validateDivider(input2);
-                                System.out.println(compController.div(input1, input2));
+                                answer = compController.div(input1, input2).toString();
+                                logger.writeOperation(input1, input2, command, answer);
+                                System.out.println(answer);
                                 break;
                         }
                         break;
@@ -94,6 +112,7 @@ public class CalcView {
                         System.out.println("Help! I need somebody!");
                 }
             } catch (Exception e) {
+                logger.writeException(e.getMessage());
                 System.out.println("Error! " + e.getMessage());
             }
         }
