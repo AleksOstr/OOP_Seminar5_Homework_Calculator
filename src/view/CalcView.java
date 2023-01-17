@@ -23,10 +23,11 @@ public class CalcView {
     public void run() {
         Commands com = Commands.NONE;
         while (true) {
-            String command = prompt("Select calculator (FRACTION / COMPLEX): ");
-            com = Commands.valueOf(command.toUpperCase());
-            if (com == Commands.EXIT) return;
             try {
+                String command = prompt("Select calculator (FRACTION / COMPLEX): ");
+                if (command.equals("")) throw new RuntimeException("Wrong command!");
+                com = Commands.valueOf(command.toUpperCase());
+                if (com == Commands.EXIT) return;
                 switch (com) {
                     case FRACTION:
                         command = prompt("Select operation: ");
@@ -93,7 +94,7 @@ public class CalcView {
                         System.out.println("Help! I need somebody!");
                 }
             } catch (Exception e) {
-                System.out.println("Error!" + e.getMessage());
+                System.out.println("Error! " + e.getMessage());
             }
         }
     }
