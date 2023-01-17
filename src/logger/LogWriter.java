@@ -12,7 +12,7 @@ public class LogWriter {
         DateFormat df = new SimpleDateFormat(pattern);
         Date now = Calendar.getInstance().getTime();
         String nowAsString = df.format(now);
-        String lineForLog = String.format("Date: %s, Command: %s, Num1: %s, Num2 %s, Answer: %s\n",
+        String lineForLog = String.format("Date: %s, Command: %s, Num1: %s, Num2: %s, Answer: %s\n",
                 nowAsString, command, num1, num2, answer);
         try (FileWriter writer = new FileWriter("log.txt", true)) {
             writer.write(lineForLog);

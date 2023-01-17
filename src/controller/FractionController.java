@@ -36,12 +36,16 @@ public class FractionController {
 
     private Num.Fraction parseStringToFraction(String input) {
         String[] fraction = input.split("/");
-        return new Num.Fraction(Long.parseLong(fraction[0]), Long.parseLong(fraction[1]));
+        if (fraction.length == 1) {
+            return new Num.Fraction(Long.parseLong(fraction[0]), 1);
+        } else {
+            return new Num.Fraction(Long.parseLong(fraction[0]), Long.parseLong(fraction[1]));
+        }
     }
 
     public void validateInputFraction(String input) throws Exception {
         String[] fraction = input.split("/");
-        if (!fraction[1].equals("0")) {
+        if (fraction.length == 1 || !fraction[1].equals("0")) {
             return;
         }
         throw new Exception("Denominator can't be 0");
