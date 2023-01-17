@@ -109,7 +109,7 @@ public class CalcView {
                         }
                         break;
                     case HELP:
-                        System.out.println("Help! I need somebody!");
+                        System.out.println("For help read README.md!");
                 }
             } catch (Exception e) {
                 logger.writeException(e.getMessage());

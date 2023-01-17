@@ -12,6 +12,7 @@ public class ComplexController {
 
     private Num.Complex parseStringToComplex(String input) {
         String str = input.replace("i", "");
+        str = str.replace(",", ".");
         String[] complex = str.split(" ");
         if (input.contains("i") && complex.length == 1) {
             return new Num.Complex(0, Double.parseDouble(complex[0]));
